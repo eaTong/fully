@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.DS_Store
+dist
+.idea
+build
+.next
+adminDist
+
+config/server.config.production.js
