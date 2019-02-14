@@ -11,7 +11,7 @@ module.exports.ArgMissError = class ArgMissError {
 
 module.exports.LogicError = class LogicError {
   constructor(message) {
-    this.name = 'LoginError';
+    this.name = 'LogicError';
     this.message = message;
     this.stack = new Error().stack;
   }

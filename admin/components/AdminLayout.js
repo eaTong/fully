@@ -74,7 +74,11 @@ class AdminLayout extends Component {
     return (
       <Layout>
         <Header className="header">
-          <div className="brand">eaTong V2</div>
+          <div className="brand">
+            <span className="brand-name">镜管家</span>
+            <span className="slogan">--明镜般管理您的眼镜店</span>
+          </div>
+
           <span className="welcome">欢迎您：</span>
           <span className="name">{loginUser.name}</span>
           <Tooltip title='退出'>

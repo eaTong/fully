@@ -17,7 +17,15 @@
     "type": "git",
     "url": "git+https://github.com/eaTong/fully.git"
   },
-  "keywords": ["react","koa","MobX","MySQL","antd","bulma","code generator"],
+  "keywords": [
+    "react",
+    "koa",
+    "MobX",
+    "MySQL",
+    "antd",
+    "bulma",
+    "code generator"
+  ],
   "author": "eaTong",
   "license": "ISC",
   "bugs": {
@@ -82,7 +90,6 @@
     "postcss-loader": "^3.0.0",
     "proxy-middleware": "^0.15.0",
     "raw-loader": "^1.0.0",
-    "react-document-title": "^2.0.3",
     "react-hot-loader": "^4.6.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

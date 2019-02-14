@@ -51,7 +51,7 @@ nextServer.prepare()
       hidden: true
     }));
 
-    app.keys = ['key-for-eaTong'];
+    app.keys = ['key-for-eaTong-fully'];
     app.use(session({
       store: new MysqlStore(serverConfig.mysql),
       rolling: true,

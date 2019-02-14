@@ -3,13 +3,11 @@
  * Description:
  */
 
-
-
 let config = {
   mysql: {
-    user: "jgj",
-    password: "jgj@eaTong123",
-    database: "jgj",
+    user: "fully",
+    password: "fully@123",
+    database: "fully",
     host: "127.0.0.1"
   },
 };
