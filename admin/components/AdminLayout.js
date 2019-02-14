@@ -75,13 +75,13 @@ class AdminLayout extends Component {
       <Layout>
         <Header className="header">
           <div className="brand">
-            <span className="brand-name">镜管家</span>
-            <span className="slogan">--明镜般管理您的眼镜店</span>
+            <span className="brand-name">fully</span>
+            <span className="slogan">easily develop a full stack website  </span>
           </div>
 
-          <span className="welcome">欢迎您：</span>
+          <span className="welcome">welcom：</span>
           <span className="name">{loginUser.name}</span>
-          <Tooltip title='退出'>
+          <Tooltip title='logtou'>
             <Icon type="poweroff" onClick={() => this.logout()}/>
           </Tooltip>
         </Header>
