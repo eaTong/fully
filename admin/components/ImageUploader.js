@@ -48,7 +48,7 @@ class ImageUploader extends Component {
           onChange={this.handleChange.bind(this)}
           beforeUpload={(file) => {
             return new Promise((resolve, reject) => {
-              if (/^image/.test(file.typ)) {
+              if (/^image/.test(file.type)) {
                 message.error('图片格式错误！');
                 reject();
               } else {

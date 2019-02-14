@@ -27,6 +27,12 @@ class UserApi extends BaseApi {
     return await UserService.grantRole(ctx.request.body);
   }
 
+  static async changePassword(ctx) {
+    const formData = ctx.request.body;
+    formData.account = ctx.session.loginUser.account;
+    return await UserService.changePassword(formData);
+  }
+
   static async login(ctx) {
     const user = await UserService.login(ctx.request.body);
     console.log(user);

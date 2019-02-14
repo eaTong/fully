@@ -6,7 +6,8 @@ import {Layout, Menu, Icon, Tooltip, Tabs} from 'antd'
 import ajax from '~/utils/ajax';
 import {inject, observer} from "mobx-react";
 import componentsMapping from '~/componentsMapping';
-import {REFRESH_TAG} from "~/utils/enums";
+import {REFRESH_TAG} from "~/utils/constants";
+import ChangePassword from '~/pages/personalCenter/ChangePassword';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
@@ -79,9 +80,9 @@ class AdminLayout extends Component {
             <span className="slogan">easily develop a full stack website  </span>
           </div>
 
-          <span className="welcome">welcom：</span>
-          <span className="name">{loginUser.name}</span>
-          <Tooltip title='logtou'>
+          <span className="welcome">欢迎您：</span>
+          <span className="name" onClick={() => app.toggleChangePasswordModal(true)}>{loginUser.name}</span>
+          <Tooltip title='退出'>
             <Icon type="poweroff" onClick={() => this.logout()}/>
           </Tooltip>
         </Header>
@@ -98,6 +99,12 @@ class AdminLayout extends Component {
             </Tabs>
           </Content>
         </Layout>
+        {app.showChangePasswordModal && (
+          <ChangePassword
+            onCancel={() => app.toggleChangePasswordModal(false)}
+            onOk={(data) => app.changePassword(data)}
+          />
+        )}
       </Layout>
 
     )

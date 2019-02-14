@@ -6,18 +6,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Modal, Form, Input, message} from 'antd';
+import {GLOBAL_LAYOUT} from '~/utils/constants';
 
 const FormItem = Form.Item;
-const formItemLayout = {
-  labelCol: {
-    xs: {span: 24},
-    sm: {span: 6},
-  },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 14},
-  },
-};
 
 class RoleModal extends Component {
   componentDidMount() {
@@ -44,7 +35,7 @@ class RoleModal extends Component {
              visible={true} onOk={this.onSaveData.bind(this)} onCancel={this.props.onCancel}>
         <Form>
           <FormItem
-            {...formItemLayout}
+            {...GLOBAL_LAYOUT}
             label="名称"
             hasFeedback>
             {getFieldDecorator('name', {
@@ -56,7 +47,7 @@ class RoleModal extends Component {
             )}
           </FormItem>
           <FormItem
-            {...formItemLayout}
+            {...GLOBAL_LAYOUT}
             label="备注"
             hasFeedback>
             {getFieldDecorator('remark')(

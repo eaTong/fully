@@ -43,6 +43,19 @@ class UserService extends BaseService {
     return await user.save();
   }
 
+  static async changePassword({password, originPassword, account}) {
+    const user = await User.findOne({
+      where: {account, enable: true, password: md5(originPassword).toString()}
+    });
+    if (!user) {
+      throw new LogicError('原始密码错误');
+    }
+    user.password = md5(password).toString();
+    return await user.save();
+    // return await user.setPassword();
+
+  }
+
   static async login({account, password}) {
     return await User.findOne({
       attributes: ['id', 'name', 'account'],

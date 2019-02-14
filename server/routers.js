@@ -35,6 +35,7 @@ router.post('/api/user/update', insertLog('update'), checkArguments(['id', 'acco
 router.post('/api/user/delete', insertLog('delete'), checkArguments(['ids']), UserApi.deleteUsers);
 router.post('/api/user/logout', insertLog('login'), UserApi.logout);
 router.post('/api/user/grant', insertLog('grant'), checkArguments(['userId', 'roles']), UserApi.grantRole);
+router.post('/api/user/changePassword', insertLog('changePassword'), checkArguments(['password', 'originPassword']), UserApi.changePassword);
 
 //UPDATE_TAG:defineRouter
 

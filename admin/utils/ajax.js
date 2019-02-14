@@ -7,14 +7,17 @@ import {message, notification} from 'antd';
 import {LogicalError} from '~/utils/errors'
 import store from '~/stores';
 
+message.config({maxCount: 1, top: 28});
 
 export default async function ajax(config) {
   const {url, data, headers} = config;
 
   let result;
   store.app.ajaxStart(url);
+  const hideLoading = message.loading(config.loadingText || 'loading...', 0);
   try {
     result = await axios.post(url, data, {headers: headers});
+    hideLoading();
     if (!result.data.success) {
       notification.warning({message: result.data.message});
       throw new LogicalError(result);
@@ -22,6 +25,7 @@ export default async function ajax(config) {
     store.app.ajaxEnd(url);
     return JSON.parse(JSON.stringify(result.data.data).replace(/:null/g, ':""'));
   } catch (ex) {
+    hideLoading();
     if (ex instanceof LogicalError) {
       throw new LogicalError(ex);
     } else {

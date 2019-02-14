@@ -4,7 +4,7 @@
  */
 import {observable, action} from 'mobx';
 import ajax from "~/utils/ajax";
-import {REFRESH_TAG} from "~/utils/enums";
+import {REFRESH_TAG} from "~/utils/constants";
 
 
 export default class AppStore {
@@ -17,6 +17,7 @@ export default class AppStore {
   @observable tabList = [
     {path: '/admin/index', name: '首页', optionalData: {}}
   ];
+  @observable showChangePasswordModal = false;
 
   @action
   async login(values) {
@@ -24,6 +25,16 @@ export default class AppStore {
     this.loginUser = data;
     window.sessionStorage.setItem('loginUser', JSON.stringify(data));
     return data;
+  }
+
+  @action toggleChangePasswordModal(visible) {
+    this.showChangePasswordModal = typeof visible === 'undefined' ? !this.showChangePasswordModal : visible;
+  }
+
+  @action
+  async changePassword(data) {
+    await ajax({data, url: '/api/user/changePassword'});
+    this.toggleChangePasswordModal(false);
   }
 
   @action initialLoginUser() {
@@ -93,7 +104,7 @@ export default class AppStore {
   addTab(path, name, optionalData) {
     let valueIndex = -1;
     for (let i in this.tabList) {
-      if (this.tabList[i].path.split(REFRESH_TAG)[0] === path) {
+      if (getRealPath(this.tabList[i].path) === path) {
         valueIndex = i;
         break;
       }
@@ -134,13 +145,12 @@ export default class AppStore {
   closeTab(key, event) {
     event && event.preventDefault();
     event && event.stopPropagation();
-    //TODO
     let newList = [...this.tabList];
     let index, newIndex, newKey;
 
     if (key === this.activeKey) {
       for (let i = 0; i < newList.length; i++) {
-        if (newList[i].path.split(REFRESH_TAG)[0] === key) {
+        if (getRealPath(newList[i].path) === getRealPath(key)) {
           index = i;
         }
         if (newList[i].path === this.lastKey) {
@@ -150,7 +160,7 @@ export default class AppStore {
       }
     } else {
       for (let i = 0; i < newList.length; i++) {
-        if (newList[i].path.split(REFRESH_TAG)[0] === key) {
+        if (getRealPath(newList[i].path) === getRealPath(key)) {
           index = i;
         }
         if (newList[i].path === this.activeKey) {
@@ -175,4 +185,8 @@ export default class AppStore {
       this.tabList = newList;
     }
   }
+}
+
+function getRealPath(path) {
+  return path.split(REFRESH_TAG)[0];
 }

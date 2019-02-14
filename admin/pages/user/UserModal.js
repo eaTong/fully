@@ -4,18 +4,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Modal, Form, Input, message} from 'antd';
+import {GLOBAL_LAYOUT} from '~/utils/constants';
 
 const FormItem = Form.Item;
-const formItemLayout = {
-  labelCol: {
-    xs: {span: 24},
-    sm: {span: 6},
-  },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 14},
-  },
-};
 
 class UserModal extends Component {
   constructor(props) {
@@ -47,7 +38,7 @@ class UserModal extends Component {
              visible={true} onOk={this.onSaveData.bind(this)} onCancel={this.props.onCancel}>
         <Form>
           <FormItem
-            {...formItemLayout}
+            {...GLOBAL_LAYOUT}
             label="姓名"
             hasFeedback>
             {getFieldDecorator('name', {
@@ -59,7 +50,7 @@ class UserModal extends Component {
             )}
           </FormItem>
           <FormItem
-            {...formItemLayout}
+            {...GLOBAL_LAYOUT}
             label="账号"
             hasFeedback>
             {getFieldDecorator('account', {
@@ -72,7 +63,7 @@ class UserModal extends Component {
           </FormItem>
           {operateType === 'add' && (
             <FormItem
-              {...formItemLayout}
+              {...GLOBAL_LAYOUT}
               label="密码"
               hasFeedback>
               {getFieldDecorator('password', {
