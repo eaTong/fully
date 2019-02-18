@@ -6,10 +6,10 @@ const Router = require('koa-router');
 const {checkArguments, checkLogin, structureData, insertLog} = require('./framework/middleWare');
 const {ArgMissError, LogicError} = require('./framework/errors');
 
-const FileApi = require('./apis/FileApi');
-const UserApi = require('./apis/UserApi');
-const RoleApi = require('./apis/RoleApi');
-const MenuApi = require('./apis/MenuApi');
+const fileApi = require('./apis/fileApi');
+const userApi = require('./apis/userApi');
+const roleApi = require('./apis/roleApi');
+const menuApi = require('./apis/menuApi');
 //UPDATE_TAG:importApi
 
 const router = new Router();
@@ -17,25 +17,25 @@ const router = new Router();
 router.post('/api/*', checkLogin);
 router.post('/api/*', structureData);
 
-router.post('/api/user/login', insertLog('login'), checkArguments(['account', 'password']), UserApi.login);
-router.post('/api/image/upload', FileApi.uploadImage);
-router.post('/api/file/upload', FileApi.uploadFile);
-router.post('/api/menu/get', MenuApi.getMenus);
-router.post('/api/menu/authorised', MenuApi.getAuthorisedMenu);
+router.post('/api/user/login', insertLog('login'), checkArguments(['account', 'password']), userApi.login);
+router.post('/api/image/upload', fileApi.uploadImage);
+router.post('/api/file/upload', fileApi.uploadFile);
+router.post('/api/menu/get', menuApi.getMenus);
+router.post('/api/menu/authorised', menuApi.getAuthorisedMenu);
 
-router.post('/api/role/add', insertLog('add'), checkArguments(['name']), RoleApi.addRole);
-router.post('/api/role/get', RoleApi.getRoles);
-router.post('/api/role/update', insertLog('update'), checkArguments(['id', 'name']), RoleApi.updateRoles);
-router.post('/api/role/delete', insertLog('delete'), checkArguments(['ids']), RoleApi.deleteRoles);
-router.post('/api/role/grant', insertLog('grant'), checkArguments(['roleId', 'menus']), RoleApi.grantMenus);
+router.post('/api/role/add', insertLog('add'), checkArguments(['name']), roleApi.addRole);
+router.post('/api/role/get', roleApi.getRoles);
+router.post('/api/role/update', insertLog('update'), checkArguments(['id', 'name']), roleApi.updateRoles);
+router.post('/api/role/delete', insertLog('delete'), checkArguments(['ids']), roleApi.deleteRoles);
+router.post('/api/role/grant', insertLog('grant'), checkArguments(['roleId', 'menus']), roleApi.grantMenus);
 
-router.post('/api/user/add', insertLog('add'), checkArguments(['account', 'name']), UserApi.addUser);
-router.post('/api/user/get', UserApi.getUsers);
-router.post('/api/user/update', insertLog('update'), checkArguments(['id', 'account', 'name']), UserApi.updateUsers);
-router.post('/api/user/delete', insertLog('delete'), checkArguments(['ids']), UserApi.deleteUsers);
-router.post('/api/user/logout', insertLog('login'), UserApi.logout);
-router.post('/api/user/grant', insertLog('grant'), checkArguments(['userId', 'roles']), UserApi.grantRole);
-router.post('/api/user/changePassword', insertLog('changePassword'), checkArguments(['password', 'originPassword']), UserApi.changePassword);
+router.post('/api/user/add', insertLog('add'), checkArguments(['account', 'name']), userApi.addUser);
+router.post('/api/user/get', userApi.getUsers);
+router.post('/api/user/update', insertLog('update'), checkArguments(['id', 'account', 'name']), userApi.updateUsers);
+router.post('/api/user/delete', insertLog('delete'), checkArguments(['ids']), userApi.deleteUsers);
+router.post('/api/user/logout', insertLog('login'), userApi.logout);
+router.post('/api/user/grant', insertLog('grant'), checkArguments(['userId', 'roles']), userApi.grantRole);
+router.post('/api/user/changePassword', insertLog('changePassword'), checkArguments(['password', 'originPassword']), userApi.changePassword);
 
 //UPDATE_TAG:defineRouter
 
