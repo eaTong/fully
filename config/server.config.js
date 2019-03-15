@@ -3,6 +3,9 @@
  * Description:
  */
 
+const fs = require('fs-extra');
+const path = require('path');
+
 let config = {
   mysql: {
     user: "fully",
@@ -12,7 +15,7 @@ let config = {
   },
 };
 
-if(process.env.NODEV_ENV === 'production'){
+if (fs.existsSync(path.resolve(__dirname, 'server.config.production.js'))) {
   config = require("./server.config.production")
 }
 
