@@ -86,7 +86,7 @@
     "mobx": "^5.15.0",
     "mobx-react": "^5.4.4",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "proxy-middleware": "^0.15.0",
     "raw-loader": "^1.0.0",
